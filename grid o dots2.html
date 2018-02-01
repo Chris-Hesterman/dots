@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<title>Grid-O-Dots</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/gridOdots.css">
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-full.min.js"></script>
+	<script type="text/paperscript" canvas = "myCanvas">
+		var circles = [];
+		var hueCircle = 0;
+		var lowerLeft = [];
+		var grow = true;
+
+		//Set up grid
+
+		for(var x = 70; x < view.size.width; x+=100) {
+			for(var y = 70; y < view.size.height - 100; y+=100) {
+				var point = new Point(x, y)
+				var newCircle = new Path.Circle(point, 20);
+				newCircle.fillColor = "red";
+				circles.push(newCircle);
+				lowerLeft.push(newCircle.bounds.bottomLeft + 30);
+			}
+		}
+
+		for(var j = 0; j < circles.length; j++) {
+					circles[j].fillColor.hue = hueCircle;
+					hueCircle += 6;
+		}
+
+		// color, movement, and size change
+
+		function onFrame(event) {
+
+			for(var i = 0; i < circles.length; i++) {
+				var wide = circles[i].bounds.width;
+
+				circles[i].fillColor.hue += 20;
+				circles[i].rotate(7, lowerLeft[i]);
+
+				if (grow === true && wide < 100) {
+					circles[i].scale(1.03);
+					grow = true;
+				} else {
+					grow = false;
+			 	}
+
+				if (grow === false && wide > 20) {
+					circles[i].scale(0.97);
+
+				} else {
+					grow = true;
+				}
+			}
+		}
+
+	</script>
+</head>
+
+<body>
+
+<canvas id="myCanvas" resize></canvas>
+
+</body>
+
+</html>
