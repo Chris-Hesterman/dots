@@ -7,13 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/gridOdots.css">
 	<script src = "https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-full.min.js"></script>
-	<script type="text/paperscript" canvas = "myCanvas">
+	<script type = "text/paperscript" canvas = "myCanvas">
 		var circles = [];
 		var hueCircle = 0;
 		var lowerLeft = [];
 		var grow = true;
 
-		//Set up grid
+		
 
 		for(var x = 70; x < view.size.width; x+=100) {
 			for(var y = 70; y < view.size.height - 100; y+=100) {
@@ -30,7 +30,6 @@
 					hueCircle += 6;
 		}
 
-		// color, movement, and size change
 
 		function onFrame(event) {
 
