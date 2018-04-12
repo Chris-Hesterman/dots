@@ -18,7 +18,7 @@
 		for(var x = 70; x < view.size.width; x+=100) {
 			for(var y = 70; y < view.size.height - 100; y+=100) {
 				var point = new Point(x, y)
-				var newCircle = new Path.Circle(point, 20);
+				var newCircle = new Path.Circle(point, 20 * Math.floor(Math.random()));
 				newCircle.fillColor = "red";
 				circles.push(newCircle);
 				lowerLeft.push(newCircle.bounds.bottomLeft + 30);
